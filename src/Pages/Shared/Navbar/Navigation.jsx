@@ -21,7 +21,7 @@ const Navigation = () => {
             </li></>
   return (
     <div>
-      <div className="navbar fixed  z-10 bg-opacity-50 bg-base-100 text-white max-w-screen-xl mx-auto">
+      <div className="navbar fixed  z-10 bg-opacity-50 bg-black text-white max-w-screen-xl mx-auto">
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -42,7 +42,7 @@ const Navigation = () => {
             </label>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-black rounded-box w-52"
             >
              {navlink}
             </ul>
@@ -50,7 +50,7 @@ const Navigation = () => {
           <a className="btn btn-ghost normal-case text-xl">Bistro Boss</a>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">
+          <ul className="menu menu-horizontal px-1 ">
            {navlink}
           </ul>
         </div>

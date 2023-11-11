@@ -1,0 +1,14 @@
+.featured-Bg{
+    background-image: linear-gradient(rgba(0, 0, 0, 0.201), rgba(0, 0, 0, 0.34)), url('../../assets/home/featured.jpg');
+    background-size: 100% auto;
+    position: relative;
+}
+.bgOpacity{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(51, 51, 51, 0.5); 
+}
+

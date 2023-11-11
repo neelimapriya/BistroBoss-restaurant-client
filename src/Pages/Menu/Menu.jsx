@@ -1,7 +1,11 @@
 import { Helmet } from "react-helmet-async";
 import Cover from "../Shared/Cover/Cover";
 import menuImg from "../../assets/menu/banner3.jpg";
-import PopularMenu from "../../Component/Menu/PopularMenu";
+import dessertImg from "../../assets/menu/dessert-bg.jpeg";
+import pizzaImg from "../../assets/menu/pizza-bg.jpg";
+import saladImg from "../../assets/menu/salad-bg.jpg";
+import soupImg from "../../assets/menu/soup-bg.jpg";
+// import PopularMenu from "../../Component/Menu/PopularMenu";
 import useMenu from "../../Hooks/useMenu";
 import SectionTitle from "../../Component/SectionTitle/SectionTitle";
 import MenuCategory from "../../Component/MenuCategory/MenuCategory";
@@ -26,8 +30,18 @@ const Menu = () => {
         subHeading={"---Don't miss---"}
         heding={"TODAY'S OFFER"}
       ></SectionTitle>
+      {/* offered menu  */}
       <MenuCategory items={offered}></MenuCategory>
+      {/* dessert menu */}
+      <MenuCategory items={dessert} title={"desserts"} img={dessertImg}></MenuCategory>
 
+    {/* pizza menu */}
+    <MenuCategory items={pizza} title={"Pizza"} img={pizzaImg}></MenuCategory>
+    {/* salad menu */}
+    <MenuCategory items={salad} title={"Salad"} img={saladImg}></MenuCategory>
+    {/* soup menu */}
+    <MenuCategory items={soup} title={"Soup"} img={soupImg}></MenuCategory>
+   
      
     </div>
   );

@@ -14,7 +14,7 @@ const FoodCard = ({item}) => {
         <h2 className="card-title text-center">{name}</h2>
         <p>{recipe}</p>
         <div className="card-actions justify-center">
-          <button className="btn border-0 border-yellow-700 border-b-4 text-yellow-700 hover:bg-black ">Add to cart</button>
+          <button className="btn border-0 border-yellow-700 border-b-4 text-yellow-700 bg-slate-200 hover:bg-black ">Add to cart</button>
         </div>
       </div>
     </div>

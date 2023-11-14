@@ -1,32 +1,59 @@
 import { useContext } from "react";
-import {  NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { AuthContext } from "../../../Providers/AuthProviders";
+import { IoMdCart } from "react-icons/io";
+import useCart from "../../../Hooks/useCart";
 
 const Navigation = () => {
-  const {user, logOut}=useContext(AuthContext)
-  const handleLogout =()=>{
+
+  const { user, logOut } = useContext(AuthContext);
+  const [cart]=useCart()
+
+  const handleLogout = () => {
     logOut()
-    .then(()=>{})
-    .catch(error=>console.log(error))
-  }
+      .then(() => {})
+      .catch((error) => console.log(error));
+  };
   const navlink = (
     <>
-
-      <li >
-        <NavLink to='/'>Home</NavLink>
-      </li>
       <li>
-        <NavLink to='menu'>Our Menu</NavLink>
+        <NavLink to="/">Home</NavLink>
+      </li>
+
+      <li>
+        <NavLink to="menu">Our Menu</NavLink>
       </li>
       <li>
         <NavLink to="/order/salad">Order Food</NavLink>
       </li>
-      
-     
-    { user? <><li>
-        <NavLink to="/login">Login</NavLink>
-      </li></>:<><button onClick={handleLogout} className="btn btn-ghost">Logout</button></>}
-      
+      <li>
+        <NavLink to="/">
+         
+          <IoMdCart className="text-2xl text-orange-700" />
+            <div className="badge text-orange-600 font-bold">+ {cart?.length}</div>
+         
+        </NavLink>
+      </li>
+
+      {/* className={({ isActive }) =>
+                    isActive
+                      && ''
+                  } */}
+
+      {user ? (
+        <>
+          <button onClick={handleLogout} className="btn btn-ghost">
+            Logout
+          </button>
+        </>
+      ) : (
+        <>
+          {" "}
+          <li>
+            <NavLink to="/login">Login</NavLink>
+          </li>
+        </>
+      )}
     </>
   );
   return (

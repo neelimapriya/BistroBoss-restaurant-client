@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import signupImg from "../../assets/others/authentication2.png";
 import { useForm } from "react-hook-form";
 import { Helmet } from "react-helmet-async";
@@ -6,19 +6,29 @@ import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProviders";
 
 const Signup = () => {
-    const {createUser}=useContext(AuthContext)
+    const {createUser,updateUserProfile}=useContext(AuthContext)
   const {
     register,
     handleSubmit,
 
     formState: { errors },
   } = useForm();
+  const navigate =useNavigate()
   const onSubmit = (data) => {
     console.log(data);
     createUser(data.email, data.password)
     .then(result =>{
         const loggedUser =result.user;
         console.log(loggedUser)
+        updateUserProfile(data.name, data.photoURL)
+        .then(()=>{
+          console.log("user profile updatw")
+          
+          alert('user created')
+          navigate('/')
+
+        })
+        .catch(error=>console.log(error))
     })
   };
 
@@ -50,6 +60,21 @@ const Signup = () => {
                 />
                 {errors.name && (
                   <p className="text-red-600">Name is required</p>
+                )}
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Photo Url</span>
+                </label>
+                <input
+                  {...register("photo", { required: true })}
+                  name="photo"
+                  type="text"
+                  placeholder="Your photo url"
+                  className="input input-bordered"
+                />
+                {errors.photo && (
+                  <p className="text-red-600">photo is required</p>
                 )}
               </div>
               <div className="form-control">

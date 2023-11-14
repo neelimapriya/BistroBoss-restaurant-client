@@ -6,7 +6,7 @@ import {
   validateCaptcha,
 } from "react-simple-captcha";
 import { AuthContext } from "../../Providers/AuthProviders";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 
 
@@ -15,6 +15,12 @@ const Login = () => {
     // const capctchaRef =useRef(null)
     const [disabled, setDisabled]=useState(true)
     const {signIn}=useContext(AuthContext)
+    const location =useLocation()
+    const navigate=useNavigate()
+
+    const from=location.state?.from?.pathname || '/';
+    console.log('state in the location', location.state)
+
     useEffect(() => {
         loadCaptchaEnginge(6); 
     }, []);
@@ -30,6 +36,8 @@ const Login = () => {
     .then(result=>{
       const user =result.user;
       console.log(user)
+      alert('User Logged in')
+      navigate(from, {replace:true})
     })
   };
   const handlevalidateCaptcha =(e)=>{
@@ -95,7 +103,7 @@ const Login = () => {
 
               <div className="form-control mt-6">
                 <input
-                disabled={disabled}
+                // disabled={disabled}
                   type="submit"
                   value="Login"
                   className="btn btn-primary"
@@ -104,6 +112,7 @@ const Login = () => {
             </form>
             <p className="text-center pb-3"><small>New here ? <Link className="text-yellow-600" to="/signup">Create an account.</Link></small></p>
           </div>
+          <Link to='/'><button className="text-center btn btn-primary">Home</button></Link>
         </div>
       </div>
     </div>

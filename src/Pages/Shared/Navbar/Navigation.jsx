@@ -27,7 +27,7 @@ const Navigation = () => {
         <NavLink to="/order/salad">Order Food</NavLink>
       </li>
       <li>
-        <NavLink to="/">
+        <NavLink to="/dashboard/cart">
          
           <IoMdCart className="text-2xl text-orange-700" />
             <div className="badge text-orange-600 font-bold">+ {cart?.length}</div>

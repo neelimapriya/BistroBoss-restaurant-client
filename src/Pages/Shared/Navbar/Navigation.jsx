@@ -35,10 +35,6 @@ const Navigation = () => {
         </NavLink>
       </li>
 
-      {/* className={({ isActive }) =>
-                    isActive
-                      && ''
-                  } */}
 
       {user ? (
         <>
@@ -90,7 +86,7 @@ const Navigation = () => {
           <ul className="menu menu-horizontal px-1 ">{navlink}</ul>
         </div>
         <div className="navbar-end">
-          <a className="btn">Button</a>
+          <h2 className="uppercase  text-red-700 font-bold bg-white rounded-full p-2 font-serif">{user && user?.displayName }</h2>
         </div>
       </div>
     </div>

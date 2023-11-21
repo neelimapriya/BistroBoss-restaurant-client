@@ -4,41 +4,55 @@ import { useForm } from "react-hook-form";
 import { Helmet } from "react-helmet-async";
 import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProviders";
+import useAxiospublic from "../../Hooks/useAxiosPublic";
+import Swal from "sweetalert2";
 
 const Signup = () => {
-    const {createUser,updateUserProfile}=useContext(AuthContext)
+  const { createUser, updateUserProfile } = useContext(AuthContext);
+  const Axiospublic = useAxiospublic();
+
   const {
     register,
     handleSubmit,
 
     formState: { errors },
   } = useForm();
-  const navigate =useNavigate()
+  const navigate = useNavigate();
   const onSubmit = (data) => {
     console.log(data);
-    createUser(data.email, data.password)
-    .then(result =>{
-        const loggedUser =result.user;
-        console.log(loggedUser)
-        updateUserProfile(data.name, data.photoURL)
-        .then(()=>{
-          console.log("user profile updatw")
-          
-          alert('user created')
-          navigate('/')
-
+    createUser(data.email, data.password).then((result) => {
+      const loggedUser = result.user;
+      console.log(loggedUser);
+      updateUserProfile(data.name, data.photoURL)
+        .then(() => {
+          // create user entry in the database
+          const userInfo = {
+            name: data.name,
+            email: data.email,
+          };
+          Axiospublic.post("/user", userInfo).then((res) => {
+            if (res.data.insertedId) {
+              console.log("user added to the database");
+              Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Account created",
+                showConfirmButton: false,
+                timer: 1500,
+              });
+              navigate("/");
+            }
+          });
         })
-        .catch(error=>console.log(error))
-    })
+        .catch((error) => console.log(error));
+    });
   };
-
-
 
   return (
     <div>
-        <Helmet>
-            <title>Bistro Boss | SignUp</title>
-        </Helmet>
+      <Helmet>
+        <title>Bistro Boss | SignUp</title>
+      </Helmet>
       <div className="hero min-h-screen">
         <div className="hero-content flex flex-col md:flex-row-reverse">
           <div className="text-center md:w-1/2 lg:text-left">
@@ -122,7 +136,8 @@ const Signup = () => {
                 )}
                 {errors.password?.type === "pattern" && (
                   <p className="text-red-600">
-                    Password must have one upper case character, one lower case character and one special character.
+                    Password must have one upper case character, one lower case
+                    character and one special character.
                   </p>
                 )}
               </div>

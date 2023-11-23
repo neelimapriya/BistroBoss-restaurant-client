@@ -28,7 +28,7 @@ const FoodCard = ({ item }) => {
         price,
       };
 
-      // axios.post("http://localhost:5000/carts", cartItem)
+      // axios.post("https://bistro-boss-server-six-iota.vercel.app/carts", cartItem)
       AxiosSecure.post("/carts", cartItem)
       .then((res) => {
         console.log(res.data);

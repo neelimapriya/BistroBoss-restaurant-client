@@ -91,7 +91,7 @@ const CeckOutForm = () => {
             showConfirmButton:false,
             timer:2000
           })
-          // navigate('/dasboard/history')
+          navigate('/dashboard/history')
         }
       }
     }

@@ -1,7 +1,7 @@
 import axios from "axios";
 
  const Axiospublic =axios.create({
-    baseURL:'http://localhost:5000'
+    baseURL:'https://bistro-boss-server-six-iota.vercel.app'
 })
 const useAxiospublic = () => {
     return Axiospublic

@@ -1,5 +1,5 @@
 
-// http://localhost:5000/carts
+// https://bistro-boss-server-six-iota.vercel.app/carts
 
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "./useAxiosSecure";
